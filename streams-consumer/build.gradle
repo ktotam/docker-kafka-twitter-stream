@@ -1,0 +1,38 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.5.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
+
+group = 'spring'
+version = '0.1'
+sourceCompatibility = '1.8'
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'spring.consumer.ConsumerApplication'
+    }
+}
+
+bootJar {
+    mainClassName = 'spring.consumer.ConsumerApplication'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    // https://mvnrepository.com/artifact/org.json/json
+    compile group: 'org.json', name: 'json', version: '20090211'
+// https://mvnrepository.com/artifact/org.apache.kafka/kafka
+    compile group: 'org.apache.kafka', name: 'kafka_2.13', version: '2.4.1'
+// https://mvnrepository.com/artifact/org.apache.kafka/kafka-streams
+    compile group: 'org.apache.kafka', name: 'kafka-streams', version: '2.4.1'
+// https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients
+    compile group: 'org.apache.kafka', name: 'kafka-clients', version: '2.4.1'
+}
